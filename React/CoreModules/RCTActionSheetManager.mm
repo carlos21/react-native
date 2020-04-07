@@ -122,7 +122,9 @@ RCT_EXPORT_METHOD(showActionSheetWithOptions:(JS::NativeActionSheetManager::Spec
     [alertController addAction:[UIAlertAction actionWithTitle:option
                                                         style:style
                                                       handler:^(__unused UIAlertAction *action){
-      callback(@[@(localIndex)]);
+      [alertController dismissViewControllerAnimated:true completion:^{
+          callback(@[@(localIndex)]);
+      }];
     }]];
 
     index++;
